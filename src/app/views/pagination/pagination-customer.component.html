@@ -1,0 +1,11 @@
+<nav aria-label="Page navigation example"> 
+    <ul class="pagination mb-0">
+       <li class="page-item" *ngFor="let itemList of nbItemPagination"   (click)="onChoose(itemList)" [ngClass]="{'active': itemList == pageA}" >
+
+         <a class="page-link"  >{{itemList}}</a>
+      
+      </li>
+      
+    </ul>
+ </nav>
+

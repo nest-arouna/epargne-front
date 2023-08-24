@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="./">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+  <meta content="NEST e-epargne" name="description" />
+  <meta content="Łukasz Holeczek" name="author" />
+  <meta
+    content="CoreUI,Bootstrap,Admin,Template,Free,Angular,Dashboard,Typescript"
+    name="keyword"
+  />
+  <link href="assets/favicon.ico" rel="icon" type="image/x-icon">
+  <script src=https://touchpay.gutouch.net/touchpayv2/script/touchpaynr/prod_touchpay-0.0.1.js  type="text/javascript"></script>
+  <script type="text/javascript">
+    function calltouchpay(montant){
+
+      sendPaymentInfos(new Date().getTime(),
+                      'AIOCN23089',
+                      'rkIiV2kOujfcIi8HOGxHmubIq3g7miEYneMZXnqEDG0K1p9Sjn',
+                      'nest.sn', 
+                       '',
+                      '',
+                      montant,
+                       'Dakar',
+                        '',
+                        '', 
+                        '', 
+                         '');
+    }
+
+
+
+
+
+  </script> 
+  <title>NEST e-epargne</title>
+</head>
+<body>
+  <noscript></noscript>
+  <app-root>
+    <div class="fade show" style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+      <i class="spinner-grow spinner-grow-sm"></i>
+      <span class="m-1">Chargement encours ...</span>
+    </div>
+  </app-root>
+
+</body>
+</html>

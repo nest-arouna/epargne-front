@@ -1,0 +1,55 @@
+<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col md="6">
+        <c-card-group>
+
+          <c-card class="p-4" >
+            <c-card-body>
+              <form cForm  [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+                <h5 class="text-center text-danger">{{messageError}}</h5>
+                <h1>Se Connecter</h1>
+                <p class="text-medium-emphasis">Se connecter à son compte</p>
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilNotes"></svg>
+                  </span>
+                  <input autoComplete="phone"  name="phone"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" formControlName="phone" cFormControl placeholder="Téléphone"
+                              
+                  />
+                 
+                </c-input-group>
+               
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input
+                    autoComplete="current-password"
+                    name="password"
+                    formControlName="password"
+                    cFormControl
+                    placeholder="Mot de passe"
+                    type="password"
+                  />
+                </c-input-group>
+                <c-row>
+                  <c-col xs="6">
+                    <button cButton class="px-4" type="submit" color="primary">
+                      Connexion
+                    </button>
+                  </c-col>
+                 
+                  <c-col class="text-right" xs="6">
+                    <a routerLink='/forgot' color="primary" class="p-1">  Mot de passe oublié ?  </a>                        
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+          
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

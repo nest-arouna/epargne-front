@@ -1,0 +1,54 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.angular/cache
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+static/
+!**/src/main/**/build/
+!**/src/test/**/build/
+/node_modules
+### VS Code ###
+.vscode
+.angular/
+dist
+node_modules/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings

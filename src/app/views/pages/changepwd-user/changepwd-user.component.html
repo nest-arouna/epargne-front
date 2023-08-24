@@ -1,0 +1,64 @@
+<div class="bg-light container">
+    <c-container>
+      <c-row class="justify-content-center">
+        <c-col md="6" class="p-4">
+          <c-card-group>  
+            <c-card >
+              <c-card-body>
+                <form cForm  [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+                  <h5 class="text-center text-danger">{{messageError}}</h5>
+                  <h1>Changer mot de passe</h1>
+                  <p class="text-medium-emphasis"></p>                
+                 
+                  <c-input-group class="mb-4">
+                   
+                    <input
+                    (keyup)="onKeyNewPassword($event)"
+                      name="password"
+                      formControlName="newPassword"
+                      cFormControl
+                      placeholder="Nouveau mot de passe"
+                      type="password"
+                    />
+                  </c-input-group>
+                  <c-input-group class="mb-4">
+                    <input
+                    (keyup)="onKeyReNewPassword($event)"
+                      name="password"
+                      formControlName="reNewPassword"
+                      cFormControl
+                      placeholder="Resaisir le nouveau mot de passe"
+                      type="password"
+                    />
+                  </c-input-group>
+                  <p class="text-start text-{{color}}">{{message}} </p>
+
+                  <c-row>
+                    <c-col xs="6">
+                      <button cButton class="px-4" type="submit" color="primary" >
+                      Valider
+                     </button>
+                    </c-col>
+                  </c-row>
+                </form>
+              </c-card-body>
+            </c-card>
+            
+          </c-card-group>
+        </c-col>
+      </c-row>
+    </c-container>
+  </div>
+  
+  <c-modal id="liveDemoModal" [visible]="visible" >
+    <c-modal-header>
+      <h5 cModalTitle class="text-success">Confirmation de modification</h5>
+      <button (click)="closeModal()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center" > Votre mot de passe a été bien modifié</c-modal-body>
+    <c-modal-footer>
+      <button (click)="closeModal()" cButton color="secondary">
+        fermer
+      </button>
+    </c-modal-footer>
+  </c-modal>

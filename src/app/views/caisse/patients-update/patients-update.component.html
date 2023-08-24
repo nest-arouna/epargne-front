@@ -1,0 +1,85 @@
+
+<c-row>   
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header ngPreserveWhitespaces>
+        <strong>Modifier patient </strong> 
+        <a *ngIf="userGot.url_supported != null && userGot.url_supported.length != 0" href="http://{{userGot.url_supported}}"  id="prise" target="_blank" style="float: right;" hidden>Voir Prise en charge</a>
+      </c-card-header>
+      <c-card-body>      
+        <h6 cModalTitle class="text-danger text-center">{{messageError}}</h6>        
+       
+        <app-docs-example href="forms/layout#gutters">
+
+          <form cForm class="row g-3" novalidate method="POST" [formGroup]="createForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" >
+            <c-col md="4">
+              <label cLabel for="firstname">Nom</label>
+              <input cFormControl formControlName="firstname"
+               id="firstname" type="text" [(ngModel)]="userGot.firstname" />
+            </c-col>
+            
+            <c-col md="4">
+              <label cLabel for="lastname">Prénom</label>
+              <input cFormControl id="lastname" formControlName="lastname" type="text"  [(ngModel)]="userGot.lastname"/>
+            </c-col>
+            <c-col md="4">
+              <label cLabel for="email"  >Email <span class="text-danger text-center">* </span></label>
+              <input cFormControl id="email" formControlName="email" type="email" [(ngModel)]="userGot.email" />
+            </c-col>
+           
+            <c-col md="4">
+              <label cLabel for="phone">Téléphone <span class="text-danger text-center">* </span></label>
+              <input cFormControl id="phone" formControlName="phone" type="text" [(ngModel)]="userGot.phone"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+            </c-col>              
+            <c-col xs="4">
+              <label cLabel for="birthDay">Date de naissance<span class="text-danger text-center">* </span></label>
+              <input cFormControl id="birthDay" formControlName="birthDay" type="date"  />
+            </c-col>           
+            <c-col md="4">
+              <label cLabel for="adress">Adresse</label>
+              <input cFormControl id="adress" formControlName="adress" type="text" [(ngModel)]="userGot.adress"/>
+            </c-col>  
+
+
+            <c-col md="4">
+              <label cLabel for="identification_code">Code d'identification (IPM)</label>
+              <input cFormControl id="identification_code" type="text" formControlName="identification_code" [(ngModel)]="userGot.identification_code"/>
+            </c-col>
+            <c-col md="4">
+              <label cLabel for="assurance">Assurance</label>
+              <input cFormControl id="assurance" type="text" formControlName="assurance"  [(ngModel)]="userGot.assurance"/>
+            </c-col>
+            <c-col md="4" hidden>
+              <label cLabel for="file">Lettre de prise en charge</label>
+              <input cFormControl id="file" (change)="selectFile($event)" type="file"/>
+            </c-col>
+            <c-col md="4">
+              
+            </c-col>
+           
+            <c-col xs="3" class="d-flex justify-content-between">
+              <button cButton type="submit">Enregistrer</button>
+            </c-col>
+          </form>        
+        </app-docs-example>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+
+
+
+<c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle class="text-{{color}}">Confirmation d'enregistrement</h5>
+    <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body class="text-center" >{{message}}</c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemo()" cButton color="secondary">
+      fermer
+    </button>
+  </c-modal-footer>
+</c-modal>
+

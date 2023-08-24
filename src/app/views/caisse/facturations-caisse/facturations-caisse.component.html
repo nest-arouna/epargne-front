@@ -1,0 +1,119 @@
+<c-row>   
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header ngPreserveWhitespaces>
+          <strong>Rechercher encaissements(s)</strong> 
+        </c-card-header>
+        <c-card-body>     
+          <h5 class="text-center text-danger">{{searchText}}</h5>      
+         
+          <app-docs-example href="forms/layout#gutters">
+            
+
+            <form cForm class="row g-3" novalidate method="POST" [formGroup]="searchForm" (ngSubmit)="onRechercheSubmit()">
+              <c-col md="4">
+                <label cLabel for="motif">Motif</label>
+                <input cFormControl id="motif" formControlName="motif" type="text" [(ngModel)]="pSearch.motif" />
+              </c-col>
+              <c-col md="4">
+                <label cLabel for="montant">Montant</label>
+                <input cFormControl id="montant" type="text" formControlName="montant"  [(ngModel)]="pSearch.montant"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+              </c-col>
+            
+              <c-col xs="4">
+                <label cLabel for="dateOperation">Date d'encaissement</label>
+                <input cFormControl id="dateOperation" type="date" formControlName="dateOperation" [(ngModel)]="pSearch.dateOperation" />
+              </c-col>
+              
+             
+              <c-col xs="6" >
+                <button cButton type="submit" style="margin: 3%;">Rechercher</button>
+                <button cButton  (click)="initSearch()"  >Initialiser</button>
+              </c-col>
+             
+            </form>
+          </app-docs-example>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+  
+  
+  
+  <div class="row">
+      <c-col xs="12">
+          <c-card class="mb-4">
+            <c-card-header>
+              <strong>Encaissements</strong> 
+              <button style="float: right;" (click)="exportCsvButtonHandler()" hidden>Exporter en CSV </button>
+  
+    
+              <button style="float: right;" (click)="exportTsvButtonHandler()" hidden>Exporter en TSV </button><br />
+            </c-card-header>
+            <c-card-body>           
+             
+              <app-docs-example href="components/table#bordered-tables">
+                <table [bordered]="true" [cBorder]="1" borderColor="primary" cTable>
+                  <thead>
+                  <tr>
+                    <th scope="col">Date d'encaissement</th>
+                    <th scope="col">caissier(e)</th> 
+
+                    <th scope="col">Motif</th> 
+  
+                    <th scope="col">Montant</th>
+                  </thead>
+                  <tbody *ngIf="filteredDebits.length == 0">
+                   
+                    <tr>
+                      <td colspan="4" class="text-center"> Aucune encaissement disponible</td>  
+                                          
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="filteredDebits.length != 0">
+                     
+                        <tr *ngFor="let patient of filteredDebits">
+                          <td scope="row"> {{patient.dateOperation | date :'dd/MM/yyyy  HH:mm:ss'}}</td>
+                          <td> {{patient.caissier }}</td>
+                          <td> {{patient.motif }}</td>  
+                          <td>{{patient.montant }}</td>
+                                              
+                        </tr>
+                 
+                  </tbody>
+                </table>
+                <div class="d-flex justify-content-center">
+                  <app-pagination-customer [totalList]="count" (page)="onTableDataChange($event)"></app-pagination-customer>
+                </div>
+  
+              </app-docs-example>
+            </c-card-body>
+          </c-card>
+        </c-col>  
+  </div>
+  
+  
+  
+  <div class="modal fade bd-confirmation-search" tabindex="-1" role="dialog" id="formSearchNotCriteria"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title">Recherche</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+  
+           <div class="alert alert-danger">
+              Merci de saisir au moins un critère.
+           </div>
+        </div>
+        <div class="modal-footer">
+           <button class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        </div>
+     </div>
+  </div>
+  </div>
+  

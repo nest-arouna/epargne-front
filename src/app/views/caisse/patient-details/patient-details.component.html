@@ -1,0 +1,184 @@
+<c-row>
+    <c-col xs="12">
+      <c-card class="mb-3">
+        <c-card-header ngPreserveWhitespaces>
+          <strong>Détails Patient</strong> 
+          <app-docs-example href="components/card/#border">
+            <c-row>  
+              
+                <c-col lg="12"  sm="12" xs="12">
+                
+                    <c-card [cBorder]="'primary'" [textColor]="'primary'" class="mb-3">
+                      <c-card-header>Etat de mon compte</c-card-header>
+                      <c-card-body>                 
+                        
+                          <c-row  class="mb-3" > 
+                            <c-col xs="12">
+                              <h4 *ngIf="dataHome.montant_courant == 0" style="color:red;">Solde : {{dataHome.montant_courant}} FCFA</h4>
+                              <h4 *ngIf="dataHome.montant_courant != 0" style="color:green;">Solde : {{dataHome.montant_courant}} FCFA</h4>
+                           </c-col>   
+                              
+                          </c-row>     
+                          <c-row  class="mb-4"> 
+                            
+                            <c-col xs="4">
+                              <p style="color:black;">Dernière facturation : {{dataHome.montant_derniere_facturation}} FCFA</p>
+                            </c-col>   
+                            <c-col xs="4" *ngIf="dataHome.motif_derniere_facturation != null && dataHome.motif_derniere_facturation.length != 0">
+                                <p style="color:black;">Motif : {{dataHome.motif_derniere_facturation }} </p>
+                              </c-col>   
+                              <c-col xs="4" *ngIf="dataHome.motif_derniere_facturation == null || dataHome.motif_derniere_facturation != null && dataHome.motif_derniere_facturation.length == 0">
+                                <p style="color:black;">Motif : Néant </p>
+                              </c-col> 
+                              <c-col xs="4">
+                                <p *ngIf="dataHome.date_derniere_facturation == 0" style="color:black;">Date : -</p>
+                                <p *ngIf="dataHome.date_derniere_facturation != 0" style="color:black;">Date : {{dataHome.date_derniere_facturation | date :'dd/MM/yyyy' }}</p>
+                              </c-col>
+                           
+                          </c-row> 
+                          <c-row  class="mb-4">  
+                            <c-col xs="8">
+                              <p style="color:black;">Dernier recharge : {{dataHome.montant_dernier_recharge}} FCFA</p>
+                            </c-col>   
+                            <c-col xs="4">
+                              <p *ngIf="dataHome.date_dernier_recharge == 0" style="color:black;">Date : -</p>
+                              <p *ngIf="dataHome.date_dernier_recharge != 0" style="color:black;">Date : {{dataHome.date_dernier_recharge | date :'dd/MM/yyyy' }}</p>
+                            </c-col>
+                            
+                          </c-row> 
+                         
+                                 
+                       
+                      </c-card-body>
+                    </c-card>
+                  </c-col>
+                    
+                <c-col lg="6" sm="12" xs="12">
+                 
+                    <form cForm class="row g-3" novalidate method="POST" [formGroup]="searchForm" >
+
+                    <c-card [cBorder]="'primary'" [textColor]="'primary'" class="mb-3">
+                        <c-card-header>Encaissement</c-card-header>
+                        <c-card-body>        
+                           <h5 class="text-center text-danger">{{searchText}}</h5>
+                           <h5 class="text-center text-success">{{message}}</h5>         
+                          <c-row>                          
+                               
+                                    <c-col md="6" >
+                                        <label cLabel for="motif">Motif</label>
+                                        <select cSelect id="motif" formControlName="motif">
+                                          <option></option>
+                                          <option>Consultation</option>
+                                          <option>Echographie</option>
+                                          <option>Hospitalisation</option>
+                                          <option>Autre</option>                       
+                        
+                                        </select>
+                                      </c-col>  
+                                      
+                                   
+                                      <c-col md="6" >
+                                        <label cLabel for="montant">Montant</label>
+                                        <input cFormControl id="montant" type="text" formControlName="montant" placeholder="veuillez saisir le montant à débiter "/>
+                                      </c-col>
+                                      
+                       </c-row>                 
+                       <c-row>   
+                         <c-col md="4" class="pt-2">
+                            <div class="d-grid w-25" >
+                              <button cButton color="success" (click)="submitDebit() " >Encaisser</button>
+                            </div>
+                          </c-col>                         
+                         </c-row>     
+                        </c-card-body>
+                      </c-card>
+
+                    </form>
+
+
+
+                </c-col>
+                
+              <c-col lg="6"  sm="12" xs="12">              
+                <c-card [cBorder]="'primary'" [textColor]="'primary'" class="mb-3">
+                  <c-card-header>Recharge</c-card-header>
+                  <c-card-body>  
+                    <h6 cModalTitle class="text-danger text-center">{{messageError}}</h6>    
+                    <c-row>
+                      <form cForm class="row g-3" novalidate method="POST" [formGroup]="createForm" (ngSubmit)="depositeSum()"  >
+                      <c-col xl="6" md="6" sm="6">
+                       
+                          <h6>Montant<span class="text-danger text-center">* </span></h6>
+                          <c-input-group class="mb-3">                         
+                            <input autoComplete="amount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" cFormControl formControlName="amount" placeholder="Veuillez saisir la somme" />
+                          </c-input-group>                        
+                      </c-col>        
+                      <c-col xl="6" md="6" sm="6">
+                        <h6 class="text-white">#</h6>
+                          <c-input-group class="mb-3 d-grid">                         
+                            <button cButton type="submit"color="success"  >Recharger</button>
+                          </c-input-group>                      
+                       
+                      </c-col>  
+                    </form>
+  
+                    </c-row>                 
+                   
+                  </c-card-body>
+                </c-card>
+              </c-col>
+              
+            </c-row>
+          </app-docs-example>
+
+
+        </c-card-header>
+        <c-card-body>
+          <c-nav variant="tabs">
+            <c-nav-item >
+              <a [cTabContent]="tabContent2" [disabled]="false" [routerLink] [tabPaneIdx]="0"
+                 cNavLink>
+                <svg cIcon class="me-2" name="cilChart"></svg>
+                 Recharges
+              </a>
+            </c-nav-item>
+
+            <c-nav-item >
+                <a [cTabContent]="tabContent2" [disabled]="false" [routerLink] [tabPaneIdx]="1"
+                   cNavLink>
+                  <svg cIcon class="me-2" name="cilDollar"></svg>
+                  Encaissements
+                </a>
+              </c-nav-item>
+              <c-nav-item >
+                <a [cTabContent]="tabContent2" [disabled]="false" [routerLink] [tabPaneIdx]="2"
+                   cNavLink>
+                  <svg cIcon class="me-2" name="cilNotes"></svg>
+                  Informations Personnelles
+                </a>
+              </c-nav-item>
+          </c-nav>
+
+
+          <c-tab-content #tabContent2="cTabContent" [activeTabPaneIdx]="0" cRounded="bottom">
+
+            <c-tab-pane  class="p-3 preview">
+                <app-transactions-caisse [isDashboard]="false"></app-transactions-caisse>
+            </c-tab-pane>
+
+            <c-tab-pane  class="p-3 preview">
+               <app-facturations-caisse></app-facturations-caisse>
+              </c-tab-pane>
+
+              <c-tab-pane class="p-3 preview">
+               
+                <app-patients-update></app-patients-update>
+              </c-tab-pane>
+
+          </c-tab-content>
+        </c-card-body>
+      </c-card>
+    </c-col>
+   
+  </c-row>
+  

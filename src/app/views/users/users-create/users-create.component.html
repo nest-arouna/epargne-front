@@ -1,0 +1,74 @@
+<c-row>   
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header ngPreserveWhitespaces>
+          <strong>Ajouter compte</strong> 
+        </c-card-header>
+        <c-card-body>      
+          <h6 cModalTitle class="text-danger text-center">{{messageError}}</h6>        
+         
+          <app-docs-example href="forms/layout#gutters">
+            <form cForm class="row g-3" novalidate method="POST" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+              <c-col md="4">
+                <label cLabel for="firstname">Nom</label>
+                <input cFormControl formControlName="firstname"
+                 id="firstname" type="text" />
+              </c-col>
+              
+              <c-col md="4">
+                <label cLabel for="lastname">Prénom</label>
+                <input cFormControl id="lastname" formControlName="lastname" type="text" />
+              </c-col>
+              <c-col md="4">
+                <label cLabel for="email" [class.is-invalid]="this.createForm.controls['email'].errors?.['required']" >Email <span class="text-danger text-center">* </span></label>
+                <input cFormControl id="email" formControlName="email" type="email" />
+              </c-col>
+             
+              <c-col md="4">
+                <label cLabel for="phone">Téléphone <span class="text-danger text-center">* </span></label>
+                <input cFormControl id="phone" formControlName="phone" type="text"   oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
+              </c-col>              
+              <c-col xs="4">
+                <label cLabel for="birthDay">Date de naissance</label>
+                <input cFormControl id="birthDay" formControlName="birthDay" type="date"  />
+              </c-col>           
+              <c-col md="4">
+                <label cLabel for="adress">Adresse</label>
+                <input cFormControl id="adress" formControlName="adress" type="text" />
+              </c-col>             
+              <c-col md="4">
+                <label cLabel for="role">Rôle <span class="text-danger text-center">* </span></label>
+                <select cSelect id="role" formControlName="role">
+                  <option value="USER">Caissier(e)</option>
+                  <option value="ADMIN">Administration</option> 
+
+                </select>
+              </c-col>
+             
+             
+              <c-col md="12" class="pt-4">
+                <button cButton type="submit" >Enregistrer</button>
+              </c-col>
+            </form>
+          </app-docs-example>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+  
+
+
+
+  <c-modal id="liveDemoModal" [visible]="visible" >
+    <c-modal-header>
+      <h5 cModalTitle class="text-{{color}}">Confirmation d'enregistrement</h5>
+      <button (click)="closeModal()" cButtonClose></button>
+    </c-modal-header>
+    <c-modal-body class="text-center" >{{message}}</c-modal-body>
+    <c-modal-footer>
+      <button (click)="closeModal()" cButton color="secondary">
+        fermer
+      </button>
+    </c-modal-footer>
+  </c-modal>
+

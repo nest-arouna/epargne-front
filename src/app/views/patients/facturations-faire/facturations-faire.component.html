@@ -1,0 +1,64 @@
+
+  <c-row ngPreserveWhitespaces>   
+   
+        <form cForm class="row g-3" novalidate method="POST" [formGroup]="searchForm" >
+          
+      <c-card class="mb-4">
+        <c-card-header>
+          <strong>Débiter</strong>
+        </c-card-header>
+        <c-card-body>  
+          <h5 class="text-center text-danger">{{searchText}}</h5>
+          <h5 class="text-center text-success">{{message}}</h5>
+          <app-docs-example href="components/card/#border">
+            <c-row>
+                <c-col lg="6">
+                    <c-card [cBorder]="'primary'" [textColor]="'primary'" class="mb-3">
+                        <c-card-header>Informations</c-card-header>
+                        <c-card-body>                 
+                          <c-row>                          
+                               
+                                    <c-col md="6">
+                                        <label cLabel for="motif">Motif</label>
+                                        <select cSelect id="motif" formControlName="motif">
+                                          <option></option>
+                                          <option>Consultation</option>
+                                          <option>Echographie</option>
+                                          <option>Hospitalisation</option>
+                                          <option>Autre</option>                       
+                        
+                                        </select>
+                                      </c-col>  
+                                      
+                                   
+                                      <c-col md="6">
+                                        <label cLabel for="montant">Montant à débiter</label>
+                                        <input cFormControl id="montant" type="text" formControlName="montant" placeholder="veuillez saisir le montant à débiter "/>
+                                      </c-col>
+                                      
+                       </c-row>                 
+                       <c-row>   
+                         <c-col md="4" class="pt-2">
+                            <div class="d-grid w-25" >
+                              <button cButton color="success" (click)="submitDebit() ">Débiter</button>
+                            </div>
+                          </c-col>                         
+                         </c-row>     
+                        </c-card-body>
+                      </c-card>
+
+                  
+
+
+                </c-col>                           
+            </c-row>
+          </app-docs-example>      
+        
+        </c-card-body>
+      </c-card>
+    </form>
+   
+   
+  </c-row>
+  
+ 
