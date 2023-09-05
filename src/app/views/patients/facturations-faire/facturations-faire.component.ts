@@ -1,6 +1,6 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DebitService } from 'src/app/services/debit/debit.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class FacturationsFaireComponent {
 
   submitted: boolean =false;
   
-  constructor(private debitService : DebitService,private route: ActivatedRoute) {}
+  constructor(private debitService : DebitService,private route: ActivatedRoute,private router:Router) {}
 
 
 
@@ -54,12 +54,18 @@ export class FacturationsFaireComponent {
       if(n['code'] == 200)
       {
         this.searchText=''
+        this.searchForm.patchValue({
+          montant:0,
+          motif: '',
+        })
        this.message=" la facturation a reussi"
        setTimeout(() => {
-        location.reload()
+        this.router.navigate(['/patients/patients-details',this.route.snapshot.paramMap.get("id")])
+        this.message=""
        }, 1000);
       }
-      else{
+      else
+      {
         this.message=""
        this.searchText =n['message']
       }

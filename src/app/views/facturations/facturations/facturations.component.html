@@ -9,20 +9,28 @@
        
         <app-docs-example href="forms/layout#gutters">
           <form cForm class="row g-3" novalidate method="POST" [formGroup]="searchForm" (ngSubmit)="onRechercheSubmit()">
-            <c-col md="4">
-              <label cLabel for="motif">Motif</label>
-              <input cFormControl id="motif" formControlName="motif" [(ngModel)]="pSearch.motif" type="text" />
+            <c-col md="3">
+              <label cLabel for="motif">Motif </label>
+              <select cSelect cFormControl id="motif" formControlName="motif">
+                <option value="Consultation">Consultation</option>
+                <option value="Echographie">Echographie</option>
+                <option value="Hospitalisation">Hospitalisation</option>
+                <option value="Autre">Autre</option>  
+              </select>
             </c-col>
-            <c-col md="4">
+            <c-col md="3">
               <label cLabel for="montant">Montant</label>
               <input cFormControl id="montant" type="text" formControlName="montant" [(ngModel)]="pSearch.montant"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"/>
             </c-col>
           
-            <c-col xs="4">
-              <label cLabel for="dateOperation">Date du dépot</label>
+            <c-col xs="3">
+              <label cLabel for="dateOperation">Date début encaissement</label>
               <input cFormControl id="dateOperation" type="date" [(ngModel)]="pSearch.dateOperation" formControlName="dateOperation" />
             </c-col>
-            
+            <c-col xs="3">
+              <label cLabel for="dateOperationFin">Date fin encaissement</label>
+              <input cFormControl id="dateOperationFin" type="date" [(ngModel)]="pSearch.dateOperationFin" formControlName="dateOperationFin" />
+            </c-col>
             <c-col md="4">
              
             </c-col>
@@ -34,7 +42,7 @@
             </c-col>
             <c-col xs="6" >
               <button cButton type="submit" style="margin: 3%;">Rechercher</button>
-              <button cButton  (click)="initSearch()"  >Initialiser</button>
+              <button cButton  (click)="initSearch()"  >Effacer</button>
             </c-col>          
             
           </form>
@@ -85,7 +93,7 @@
                       </tr>
                       <tr >
                         <td scope="col"> </td>
-                        <td scope="col" class="bg-success"> Total</td>  
+                        <td scope="col" class="bg-success">Montant total</td>  
                         <td scope="col" class="bg-success">{{totalFiltered}} </td> 
                       </tr>
                 </tbody>

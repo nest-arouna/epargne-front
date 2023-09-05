@@ -2,7 +2,7 @@
   <c-col xs="12">
     <c-card class="mb-4">
       <c-card-header ngPreserveWhitespaces>
-        <strong>Rechercher facturation(s)</strong> 
+        <strong>Rechercher encaissement(s)</strong> 
       </c-card-header>
       <c-card-body>     
         <h5 class="text-center text-danger">{{searchText}}</h5>      
@@ -10,8 +10,13 @@
         <app-docs-example href="forms/layout#gutters">
           <form cForm class="row g-3" novalidate method="POST" [formGroup]="searchForm" (ngSubmit)="onRechercheSubmit()">
             <c-col md="4">
-              <label cLabel for="motif">Motif</label>
-              <input cFormControl id="motif" formControlName="motif" type="text" />
+              <label cLabel for="motif">Motif </label>
+              <select cSelect cFormControl id="motif" formControlName="motif">
+                <option value="Consultation">Consultation</option>
+                <option value="Echographie">Echographie</option>
+                <option value="Hospitalisation">Hospitalisation</option>
+                <option value="Autre">Autre</option>  
+              </select>
             </c-col>
             <c-col md="4">
               <label cLabel for="montant">Montant</label>
@@ -19,13 +24,13 @@
             </c-col>
           
             <c-col md="4">
-              <label cLabel for="dateOperation">Date du dépot</label>
+              <label cLabel for="dateOperation">Date d'encaissement</label>
               <input cFormControl id="dateOperation" type="date" formControlName="dateOperation" />
             </c-col>
             
             <c-col xs="6" >
               <button cButton type="submit" style="margin: 3%;">Rechercher</button>
-              <button cButton  (click)="initSearch()"  >Initialiser</button>
+              <button cButton  (click)="initSearch()"  >Effacer</button>
             </c-col>
            
           
@@ -43,7 +48,7 @@
     <c-col xs="12">
         <c-card class="mb-4">
           <c-card-header>
-            <strong>Facturations</strong> 
+            <strong>Encaissements</strong> 
             <button style="float: right;" (click)="exportCsvButtonHandler()" hidden>Exporter en CSV </button>
 
   
@@ -58,7 +63,7 @@
                
                 <thead>
                 <tr>
-                  <th scope="col">Date de facturation </th>
+                  <th scope="col">Date d'encaissements </th>
                   <th scope="col">Caissier(e)</th>
                   <th scope="col">Motif</th> 
                   <th scope="col">Montant</th>
@@ -66,7 +71,7 @@
                 <tbody *ngIf="filteredDebits.length == 0">
                   
                   <tr>
-                    <td colspan="4" class="text-center"> Aucune facturation disponible</td>  
+                    <td colspan="4" class="text-center"> Aucun encaissement disponible</td>  
                                         
                   </tr>
                 </tbody>

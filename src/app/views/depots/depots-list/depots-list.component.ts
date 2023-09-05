@@ -21,7 +21,8 @@ export class DepotsListComponent {
     dateOperation: 0,
     patientID: undefined,
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
   emptyCredit: Credit={
     id: undefined,
@@ -30,7 +31,8 @@ export class DepotsListComponent {
     dateOperation: 0,
     patientID: undefined,
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
   
 /*
@@ -42,6 +44,7 @@ searchText = '';
     identifiantCredit: new FormControl(''),
     montant: new FormControl(0),
     dateOperation: new FormControl(0),
+    dateOperationFin: new FormControl(0),
     patientID: new FormControl()
   });
  
@@ -54,7 +57,8 @@ searchText = '';
     dateOperation: 0,
     status: '',
     patientID: undefined,
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   };
   constructor(private creditService : CreditService,private route: ActivatedRoute) {}
 
@@ -79,6 +83,7 @@ searchText = '';
       identifiantCredit: '',
       montant: 0,
       dateOperation: 0,
+      dateOperationFin: 0,
       patientID:undefined
     });
 
@@ -91,7 +96,8 @@ searchText = '';
     if (
       this.searchForm.value.identifiantCredit.length==0 &&
       this.searchForm.value.montant==0 &&
-      this.searchForm.value.dateOperation ==null
+      this.searchForm.value.dateOperationFin==0 &&
+      this.searchForm.value.dateOperation ==0
     ) {
 
      this.searchText="Veuillez saisir au moins un champs svp"
@@ -102,6 +108,7 @@ searchText = '';
 
       this.reachCredit=this.searchForm.value as Credit
       this.reachCredit.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
+      this.reachCredit.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
 
       this.reloadData(1,this.reachCredit);
 
@@ -147,7 +154,8 @@ searchText = '';
     
     
         let searchUser=this.emptyCredit as Credit
-    
+        searchUser.dateOperation=new Date(this.pSearch.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.pSearch.dateOperationFin).getTime();
         this.page = event;
         this.reloadData(this.page,searchUser);
     

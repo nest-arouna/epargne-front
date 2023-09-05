@@ -42,7 +42,7 @@
            
                 <c-col xs="6" >
                   <button cButton type="submit" style="margin: 3%;">Rechercher</button>
-                  <button cButton  (click)="initSearch()"  >Initialiser</button>
+                  <button cButton  (click)="initSearch()"  >Effacer</button>
                 </c-col>
           </form>
         </app-docs-example>
@@ -74,12 +74,12 @@
                   <th scope="col" >Adresse</th>
                   <th scope="col" > Assurance</th>
                   <th scope="col">Solde  </th>
-                  <th scope="col" >Débiter</th>
+                  <th scope="col" hidden>Débiter</th>
                   <th scope="col" >Détail</th>
-                  <th scope="col" >Mise à jour</th> 
+                  <th scope="col" hidden>Mise à jour</th> 
                 </thead>
                 <tbody *ngIf=" filteredProfionnnals.length == 0" >
-                  <td class="text-center" colspan="8"> Aucun compte n'existe</td>
+                  <td class="text-center" colspan="8"> Aucun patient n'existe</td>
                 </tbody>
                 <tbody *ngIf=" filteredProfionnnals.length != 0" >
                     
@@ -108,7 +108,7 @@
                         <td scope="row"> {{patient.solde}}</td>
                         
                         <td>
-                          <a [routerLink]="['/caisses/encaissements-faire',patient.id]" color="primary" > Débiter   </a>                         
+                          <a [routerLink]="['/caisses/encaissements-faire',patient.id]" color="primary" hidden> Encaisser   </a>                         
                        </td>
                         <td >
                           <a [routerLink]="['/caisses/patients-details',patient.id]" color="primary" > Détail   </a>
@@ -116,7 +116,7 @@
                       </td>
                      
                       <td>
-                        <a [routerLink]="['/caisses/patients-update',patient.id]" color="primary" > Modifier </a>                          
+                        <a [routerLink]="['/caisses/patients-update',patient.id]" color="primary" hidden> Modifier </a>                          
                      </td>
                       </tr>
                

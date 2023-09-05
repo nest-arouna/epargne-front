@@ -38,7 +38,8 @@ export class PatientsDetailsComponent {
     dateOperation: 0,
     patientID: this.route.snapshot.paramMap.get("id"),
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
 
 

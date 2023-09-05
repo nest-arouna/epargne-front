@@ -32,7 +32,8 @@ export class TransactionsComponent implements OnInit{
     dateOperation: 0,
     patientID: this.patientID,
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
   emptyCredit: Credit={
     id: undefined,
@@ -41,7 +42,8 @@ export class TransactionsComponent implements OnInit{
     dateOperation: 0,
     patientID: this.patientID,
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
   
 /*
@@ -65,7 +67,8 @@ searchText = '';
     dateOperation: 0,
     status: '',
     patientID: this.patientID,
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   };
   constructor(private router:Router,private creditService : CreditService,private route: ActivatedRoute) {}
  

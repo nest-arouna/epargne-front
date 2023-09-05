@@ -5,6 +5,7 @@
     identifiantCredit: string;
     montant: number;
     dateOperation: number;
+    dateOperationFin: number;
     patientID: any;
     status: string; 
     patient: string;
@@ -16,6 +17,7 @@
     identifiantCredit: string;
     montant: number;
     dateOperation: number;
+    dateOperationFin: number;
     patientID: any;
     status: string; 
     patient: string;

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DebitService } from 'src/app/services/debit/debit.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class EncaissementsFaireComponent {
 
   submitted: boolean =false;
   
-  constructor(private debitService : DebitService,private route: ActivatedRoute) {}
+  constructor(private debitService : DebitService,private route: ActivatedRoute,private router : Router) {}
 
 
 
@@ -56,8 +56,8 @@ export class EncaissementsFaireComponent {
       {
         this.searchText=''
        this.message=" la facturation a reussi"
-       setTimeout(() => {
-        location.reload()
+       setTimeout(() => {        
+        this.router.navigate(['/caisses/patients-details',this.route.snapshot.paramMap.get("id")])
        }, 1000);
       }
       else{

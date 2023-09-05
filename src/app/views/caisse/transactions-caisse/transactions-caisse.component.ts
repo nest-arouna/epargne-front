@@ -25,7 +25,8 @@ export class TransactionsCaisseComponent implements OnInit {
     dateOperation: 0,
     patientID: this.route.snapshot.paramMap.get("id"),
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
   emptyCredit: Credit={
     id: undefined,
@@ -34,7 +35,8 @@ export class TransactionsCaisseComponent implements OnInit {
     dateOperation: 0,
     patientID: this.route.snapshot.paramMap.get("id"),
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
   
 /*
@@ -44,8 +46,9 @@ searchText = '';
 
   searchForm: FormGroup =new FormGroup({
     identifiantCredit: new FormControl(),
-    montant: new FormControl(),
-    dateOperation: new FormControl(),
+    montant: new FormControl(0),
+    dateOperation: new FormControl(0),
+    dateOperationFin: new FormControl(0),
     patientID: new FormControl(this.route.snapshot.paramMap.get("id"))
   });
  
@@ -58,7 +61,8 @@ searchText = '';
     dateOperation: 0,
     status: '',
     patientID: this.route.snapshot.paramMap.get("id"),
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   };
   constructor(private router:Router,private creditService : CreditService,private route: ActivatedRoute) {}
 
@@ -80,9 +84,10 @@ searchText = '';
   {
     this.searchForm.reset()
     this.searchForm.patchValue({
-     motif: '',
+      identifiantCredit: '',
      montant: 0,
      dateOperation: 0,
+     dateOperationFin: 0,
      status: '',
      patientID: this.route.snapshot.paramMap.get("id")
     })
@@ -98,7 +103,9 @@ searchText = '';
     if (
       this.searchForm.value.identifiantCredit.length==0 &&
       this.searchForm.value.montant==0 &&
-      this.searchForm.value.dateOperation ==null
+      this.searchForm.value.dateOperation ==0 &&
+
+      this.searchForm.value.dateOperatioFin ==0
     ) {
      
      this.searchText="Veuillez saisir au moins un champs svp"
@@ -108,8 +115,7 @@ searchText = '';
     
       this.reachCredit=this.searchForm.value as Credit
       this.reachCredit.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
-
-
+      this.reachCredit.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
       this.reloadData(1,this.reachCredit);
 
     }
@@ -127,7 +133,6 @@ searchText = '';
       reloadData(page:number,credit:Credit)
       {
 
-       
 
         this.creditService.allCredits(page,credit).subscribe(t=>
           {     
@@ -153,10 +158,11 @@ searchText = '';
       onTableDataChange(event: any) {
     
     
-        let searchUser=this.emptyCredit as Credit    
+        let searchUser=this.pSearch as Credit  
+        searchUser.dateOperation=new Date(this.pSearch.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.pSearch.dateOperationFin).getTime();  
         this.page = event;
-        this.reloadData(this.page,searchUser);
-    
+        this.reloadData(this.page,searchUser); 
     
     
     

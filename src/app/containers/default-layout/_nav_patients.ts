@@ -12,12 +12,12 @@ export const navItemPatients: INavData[] = [
     iconComponent: { name: 'cil-cursor' }
   },
   {
-    name: 'Mes facturations',
+    name: 'Mes Encaissements',
     url: '/patients/facturations',
     iconComponent: { name: 'cilCreditCard' }
   },
   {
-    name: 'Mon profil',
+    name: 'Mon Profil',
     url: '/patients/patients-profile',
     iconComponent: { name: 'cil-user' }
   }

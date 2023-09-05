@@ -49,16 +49,16 @@ export const navItemUsers: INavData[] = [
     ]
   },
   {
-    name: 'Utilisateurs',
+    name: 'Personnels',
     url: '/users',
     iconComponent: { name: 'cilList' },
     children: [      
       {
-        name: 'Liste des utilisateurs',
+        name: 'Liste des personnels',
         url: '/users/users-list'
       },
       {
-        name: 'Ajouter utilisateur',
+        name: 'Ajouter personnel',
         url: '/users/users-create'
       },
       {

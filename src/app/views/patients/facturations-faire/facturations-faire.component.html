@@ -5,7 +5,7 @@
           
       <c-card class="mb-4">
         <c-card-header>
-          <strong>Débiter</strong>
+          <strong>Encaisser</strong>
         </c-card-header>
         <c-card-body>  
           <h5 class="text-center text-danger">{{searchText}}</h5>
@@ -32,15 +32,15 @@
                                       
                                    
                                       <c-col md="6">
-                                        <label cLabel for="montant">Montant à débiter</label>
-                                        <input cFormControl id="montant" type="text" formControlName="montant" placeholder="veuillez saisir le montant à débiter "/>
+                                        <label cLabel for="montant">Montant à Encaisser</label>
+                                        <input cFormControl id="montant" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" type="text" formControlName="montant" placeholder="veuillez saisir le montant à débiter "/>
                                       </c-col>
                                       
                        </c-row>                 
                        <c-row>   
                          <c-col md="4" class="pt-2">
                             <div class="d-grid w-25" >
-                              <button cButton color="success" (click)="submitDebit() ">Débiter</button>
+                              <button cButton color="success" (click)="submitDebit() ">Encaisser</button>
                             </div>
                           </c-col>                         
                          </c-row>     

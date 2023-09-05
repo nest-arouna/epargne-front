@@ -2,7 +2,7 @@
     <c-col xs="12">
       <c-card class="mb-4">
         <c-card-header ngPreserveWhitespaces>
-          <strong>Rechercher compte(s)</strong> 
+          <strong>Rechercher personnel(s)</strong> 
         </c-card-header>
         <c-card-body>            
          
@@ -34,7 +34,7 @@
               
                   <c-col xs="6" >
                     <button cButton type="submit" style="margin: 3%;">Rechercher</button>
-                    <button cButton  (click)="initSearch()"  >Initialiser</button>
+                    <button cButton  (click)="initSearch()"  >Effacer</button>
                   </c-col>
             </form>
           </app-docs-example>
@@ -48,7 +48,7 @@
     <c-col xs="12">
         <c-card class="mb-4">
           <c-card-header>
-            <strong>Liste des comptes</strong> 
+            <strong>Liste des personnels</strong> 
             <a [routerLink]="['/users/users-create']" color="primary" style="float: right;" class="p-1"> Nouveau compte </a>                          
 
           </c-card-header>
@@ -70,7 +70,7 @@
                     <th scope="col" >Mot de passe</th> 
                   </thead>
                   <tbody *ngIf=" filteredProfionnnals.length == 0" >
-                    <td class="text-center" colspan="8"> Aucun compte n'existe</td>
+                    <td class="text-center" colspan="8"> Aucun personnel n'existe</td>
                   </tbody>
                   <tbody *ngIf=" filteredProfionnnals.length != 0" >
                      

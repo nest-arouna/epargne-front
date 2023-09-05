@@ -51,7 +51,10 @@ export class DebitService {
      {
        url_searchC=url_searchC+"&date_operation="+debit.dateOperation
      }
-
+     if(debit.dateOperationFin != null && debit.dateOperationFin != 0)
+     {
+       url_searchC=url_searchC+"&date_operation_fin="+debit.dateOperationFin
+     }
 
  
      return this._http.get<Debit[]>(this._base+ url_searchC)
@@ -78,7 +81,10 @@ export class DebitService {
       {
         url_searchC=url_searchC+"&date_operation="+debit.dateOperation
       }
- 
+      if(debit.dateOperationFin != 0)
+      {
+        url_searchC=url_searchC+"&date_operation_fin="+debit.dateOperationFin
+      }
  
   
       return this._http.get<Credit[]>(this._base+ url_searchC)
@@ -133,7 +139,10 @@ export class DebitService {
         {
           url_searchC=url_searchC+"&date_operation="+debit.dateOperation
         }
-   
+        if(debit.dateOperationFin != 0)
+        {
+          url_searchC=url_searchC+"&date_operation_fin="+debit.dateOperationFin
+        }
    
     
         return this._http.get<Credit[]>(this._base+ url_searchC)

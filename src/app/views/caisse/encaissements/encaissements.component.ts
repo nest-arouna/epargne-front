@@ -23,7 +23,8 @@ export class EncaissementsComponent {
     dateOperation: 0,
     patientID: '',
     professionnalID: localStorage.getItem("id"),
-    status: ''
+    status: '',
+    dateOperationFin: 0
   }
   emptyCredit: Debit={
     id: undefined,
@@ -32,7 +33,8 @@ export class EncaissementsComponent {
     dateOperation: 0,
     patientID: '',
     professionnalID: localStorage.getItem("id"),
-    status: ''
+    status: '',
+    dateOperationFin: 0
   }
   SearchFilter:any;
 /*
@@ -45,6 +47,7 @@ searchText = '';
     motif: new FormControl(''),
     montant: new FormControl(0),
     dateOperation: new FormControl(0),
+    dateOperationFin: new FormControl(0),
     status: new FormControl(''),
     patientID: new FormControl()
   });
@@ -58,7 +61,8 @@ searchText = '';
     dateOperation: 0,
     patientID: '',
     professionnalID: localStorage.getItem("id"),
-    status: ''
+    status: '',
+    dateOperationFin: 0
   };
   constructor(private debitService : DebitService,private csvExportService: IgxCsvExporterService ) {}
 
@@ -81,6 +85,7 @@ searchText = '';
       motif: '',
       montant: 0,
       dateOperation:0,
+      dateOperationFin:0,
       status:false,
       patientID: ''
     });
@@ -96,6 +101,7 @@ searchText = '';
       this.searchForm.value.motif.length == 0 &&
       this.searchForm.value.status.length == 0 &&
       this.searchForm.value.montant==0 &&
+      this.searchForm.value.dateOperationFin ==0 &&
       this.searchForm.value.dateOperation ==0
     ) {
 
@@ -106,6 +112,7 @@ searchText = '';
     
       this.reachCredit=this.searchForm.value as Debit
       this.reachCredit.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
+      this.reachCredit.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
 
       this.reloadData(1,this.reachCredit);
 
@@ -134,8 +141,8 @@ searchText = '';
             {
               this.count=t['data'].totalCredits 
               this.filteredDebits=t['data'].data
-              this.totalFiltered=t['data'].totalFiltered
-              this.totalGeneral=t['data'].totalGeneral
+              this.totalFiltered=Math.ceil(t['data'].totalFiltered)
+              this.totalGeneral=Math.ceil(t['data'].totalGeneral)
 
     
             }
@@ -152,8 +159,9 @@ searchText = '';
       onTableDataChange(event: any) {
     
     
-        let searchUser=this.SearchFilter as Debit
-    
+        let searchUser=this.pSearch as Debit
+        searchUser.dateOperation=new Date(this.pSearch.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.pSearch.dateOperationFin).getTime();
         this.page = event;
         this.reloadData(this.page,searchUser);
     

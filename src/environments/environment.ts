@@ -14,7 +14,7 @@ export const environment = {
   agence_code:'AIOCN23089',  
   secure_code :'rkIiV2kOujfcIi8HOGxHmubIq3g7miEYneMZXnqEDG0K1p9Sjn',  
   folder_prise_charge:'/var/www/nest/',
-  domaine :'nest.sn',  
+  domaine :'NEST',  
   order_number:'NEST-P',
   url_redirection_success :'https://icare-nestlabs-test.net:7070/#/patients/success',   
   url_redirection_failed :'https://icare-nestlabs-test.net:7070/#/patients/failed',

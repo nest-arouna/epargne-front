@@ -26,7 +26,8 @@ export class FacturationsAdminComponent {
     dateOperation: 0,
     patientID: this.patientID,
     professionnalID: '',
-    status: ''
+    status: '',
+    dateOperationFin: 0
   }
   emptyCredit: Debit={
     id: undefined,
@@ -35,7 +36,8 @@ export class FacturationsAdminComponent {
     dateOperation: 0,
     patientID: this.patientID,
     professionnalID: '',
-    status: ''
+    status: '',
+    dateOperationFin: 0
   }
   SearchFilter:any;
 /*
@@ -60,7 +62,8 @@ searchText = '';
     dateOperation: 0,
     patientID: this.patientID,
     professionnalID: '',
-    status: ''
+    status: '',
+    dateOperationFin: 0
   };
   constructor(private debitService : DebitService,private csvExportService: IgxCsvExporterService ,private _Activatedroute :ActivatedRoute) {}
 
@@ -127,7 +130,6 @@ searchText = '';
 
         this.debitService.allDebitByPatients(page,debit).subscribe(t=>
           {     
-           
 
             if(t['code'] == 200)
             {

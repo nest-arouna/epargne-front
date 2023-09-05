@@ -35,7 +35,8 @@ export class DashboardPatientComponent implements OnInit {
     dateOperation: 0,
     patientID: localStorage.getItem('id'),
     status: '',
-    patient: ''
+    patient: '',
+    dateOperationFin: 0
   }
 
 

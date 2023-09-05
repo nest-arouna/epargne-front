@@ -24,8 +24,9 @@ export class FacturationsCaisseComponent {
     montant: 0,
     dateOperation: 0,
     patientID: this.patientID,
-    professionnalID:localStorage.getItem("id"),
-    status: ''
+    professionnalID: localStorage.getItem("id"),
+    status: '',
+    dateOperationFin: 0
   }
   emptyCredit: Debit={
     id: undefined,
@@ -33,8 +34,9 @@ export class FacturationsCaisseComponent {
     montant: 0,
     dateOperation: 0,
     patientID: this.patientID,
-    professionnalID:localStorage.getItem("id"),
-    status: ''
+    professionnalID: localStorage.getItem("id"),
+    status: '',
+    dateOperationFin: 0
   }
   SearchFilter:any;
 /*
@@ -46,6 +48,7 @@ searchText = '';
     motif: new FormControl(''),
     montant: new FormControl(0),
     dateOperation: new FormControl(0),
+    dateOperationFin: new FormControl(0),
     status: new FormControl(''),
     professionnalID: new FormControl(localStorage.getItem("id")),
     patientID: new FormControl(this.patientID)
@@ -59,8 +62,9 @@ searchText = '';
     montant: 0,
     dateOperation: 0,
     patientID: this.patientID,
-    professionnalID:localStorage.getItem("id"),
-    status: ''
+    professionnalID: localStorage.getItem("id"),
+    status: '',
+    dateOperationFin: 0
   };
   constructor(private _Activatedroute: ActivatedRoute,private debitService : DebitService,private csvExportService: IgxCsvExporterService ) {}
 
@@ -83,6 +87,7 @@ searchText = '';
       id: undefined,
       motif: '',
       montant: 0,
+      dateOperationFin: 0,
       dateOperation: 0,
       patientID: this.patientID,
       professionnalID:localStorage.getItem("id"),
@@ -99,6 +104,7 @@ searchText = '';
       this.searchForm.value.motif.length == 0 &&
       this.searchForm.value.status.length == 0 &&
       this.searchForm.value.montant==0 &&
+      this.searchForm.value.dateOperationFin ==0 &&
       this.searchForm.value.dateOperation ==0
     ) {
 
@@ -109,6 +115,7 @@ searchText = '';
     
       this.reachCredit=this.searchForm.value as Debit
       this.reachCredit.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
+      this.reachCredit.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
 
       this.reloadData(1,this.reachCredit);
 
@@ -154,7 +161,9 @@ searchText = '';
     
     
         let searchUser=this.pSearch as Debit
-    
+        searchUser.dateOperation=new Date(this.pSearch.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.pSearch.dateOperationFin).getTime();
+      
         this.page = event;
         this.reloadData(this.page,searchUser);
     

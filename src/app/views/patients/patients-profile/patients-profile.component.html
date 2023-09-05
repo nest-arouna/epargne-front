@@ -11,13 +11,13 @@
         <app-docs-example href="forms/layout#gutters">
           <form cForm class="row g-3" novalidate method="POST" [formGroup]="createForm" (ngSubmit)="onSubmit()">
             <c-col md="4">
-              <label cLabel for="firstname">Nom</label>
+              <label cLabel for="firstname">Nom<span class="text-danger text-center">* </span></label>
               <input cFormControl formControlName="firstname"
                id="firstname" type="text" [(ngModel)]="userGot.firstname" />
             </c-col>
             
             <c-col md="4">
-              <label cLabel for="lastname">Prénom</label>
+              <label cLabel for="lastname">Prénom<span class="text-danger text-center">* </span></label>
               <input cFormControl id="lastname" formControlName="lastname" type="text"  [(ngModel)]="userGot.lastname"/>
             </c-col>
             <c-col md="4">
@@ -52,14 +52,103 @@
 
 
 
+<c-row>   
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header ngPreserveWhitespaces>
+        <strong>Changer mot de passe </strong> 
+      </c-card-header>
+      <c-card-body>      
+        <h6 cModalTitle class="text-danger text-center">{{messageErrorP}}</h6>        
+       
+        <app-docs-example href="forms/layout#gutters">
+          <form cForm  [formGroup]="searchForm" (ngSubmit)="onSubmitP()">
+            <c-row>
+              <c-col md="4">
+                <c-input-group class="mb-4">
+                
+                  <input
+                    autoComplete="current-password"
+                    name="password"
+                    formControlName="oldPassword"
+                    cFormControl
+                    placeholder="Ancien mot de passe"
+                    type="password"
+                  />
+                </c-input-group>
+              
+              </c-col>
+              <c-col md="4">
+                <c-input-group class="mb-4">
+               
+                  <input
+                  (keyup)="onKeyNewPassword($event)"
+                    name="password"
+                    formControlName="newPassword"
+                    cFormControl
+                    placeholder="Nouveau mot de passe"
+                    type="password"
+                  />
+                </c-input-group>
+              
+              </c-col>
+              <c-col md="4">
+                <c-input-group class="mb-4">
+                  <input
+                  (keyup)="onKeyReNewPassword($event)"
+                    name="password"
+                    formControlName="reNewPassword"
+                    cFormControl
+                    placeholder="Resaisir le nouveau mot de passe"
+                    type="password"
+                  />
+                </c-input-group>
+              
+              </c-col> 
+            </c-row>         
+            
+           
+           
+            
+            <p class="text-start text-{{colorP}}">{{messageP}} </p>
+
+            <c-row>
+              <c-col xs="6">
+                <button cButton class="px-4" type="submit" color="primary" >
+                  Enregistrer
+               </button>
+              </c-col>
+            </c-row>
+          </form>
+        </app-docs-example>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+
+    
+<c-modal id="liveDemoModal" [visible]="visibleP" >
+  <c-modal-header>
+    <h5 cModalTitle class="text-success">Confirmation de modification</h5>
+    <button (click)="closeModalP()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body class="text-center" > Votre mot de passe a été bien modifié, veuillez-vous reconnecter svp</c-modal-body>
+  <c-modal-footer>
+    <button (click)="closeModalP()" cButton color="secondary">
+      fermer
+    </button>
+  </c-modal-footer>
+</c-modal>
+
 <c-modal id="liveDemoModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
   <c-modal-header>
     <h5 cModalTitle class="text-{{color}}">Confirmation d'enregistrement</h5>
-    <button (click)="toggleLiveDemo()" cButtonClose></button>
+    <button (click)="toggleLiveDemo(); onClose()" cButtonClose></button>
   </c-modal-header>
   <c-modal-body class="text-center" >{{message}}</c-modal-body>
   <c-modal-footer>
-    <button (click)="toggleLiveDemo();closeModal()" cButton color="secondary">
+    <button (click)="toggleLiveDemo(); onClose()" cButton color="secondary">
       fermer
     </button>
   </c-modal-footer>

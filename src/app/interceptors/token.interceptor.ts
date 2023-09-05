@@ -57,7 +57,7 @@ export class TokenInterceptor implements HttpInterceptor {
                   { 
                    switch(error.status)
                    {
-                    case 500 : this.router.navigate(['/500']);break;
+                    case 500 : this.router.navigate(['/login']);break;
                     case  404: this.router.navigate(['/404']);break;
                     default :this.router.navigate(['/login']);
                    }

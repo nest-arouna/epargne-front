@@ -36,7 +36,8 @@ import { ChangepwdUserComponent } from './changepwd-user/changepwd-user.componen
     GridModule,
     IconModule,
     FormModule
-  ]
+  ],
+  exports:[ChangepwdComponent]
 })
 export class PagesModule {
 }

@@ -44,7 +44,7 @@
             
                 <c-col xs="6" >
                   <button cButton type="submit" style="margin: 3%;">Rechercher</button>
-                  <button cButton  (click)="initSearch()"  >Initialiser</button>
+                  <button cButton  (click)="initSearch()"  >Effacer</button>
                 </c-col>
           </form>
         </app-docs-example>
@@ -78,7 +78,7 @@
                   <th scope="col">Solde  </th>
                   <th scope="col" >Débiter</th>
                   <th scope="col" >Détail</th>
-                  <th scope="col" >Mise à jour</th> 
+                  <th scope="col" hidden>Mise à jour</th> 
                   <th scope="col" >Mot de passe</th> 
 
                 </thead>
@@ -112,14 +112,14 @@
                         <td scope="row"> {{patient.solde}}</td>
                         
                         <td>
-                          <a [routerLink]="['/patients/facturations-faire',patient.id]" color="primary" > Débiter   </a>                         
+                          <a [routerLink]="['/patients/facturations-faire',patient.id]" color="primary" > Encaisser   </a>                         
                        </td>
                         <td >
                           <a [routerLink]="['/patients/patients-details',patient.id]" color="primary"> Détail   </a>
 
                       </td>
                      
-                      <td>
+                      <td hidden>
                         <a [routerLink]="['/patients/patients-update',patient.id]" color="primary"> Modifier </a>                          
                      </td>
                      <td>

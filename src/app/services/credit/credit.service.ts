@@ -39,11 +39,11 @@ export class CreditService {
     {
       url_searchC=url_searchC+"&patientID="+credit.patientID
     }
-    if(credit.identifiantCredit.length != 0) 
+    if(credit.identifiantCredit != null &&  credit.identifiantCredit.length != 0) 
     {
       url_searchC=url_searchC+"&identifiant_credit="+credit.identifiantCredit
     }
-    if(credit.montant != 0)
+    if( credit.montant != 0)
     {
       url_searchC=url_searchC+"&montant="+credit.montant
     }
@@ -51,7 +51,10 @@ export class CreditService {
     {
       url_searchC=url_searchC+"&date_operation="+credit.dateOperation
     }
-
+    if(credit.dateOperationFin != 0)
+    {
+      url_searchC=url_searchC+"&date_operation_fin="+credit.dateOperationFin
+    }
 
 
     return this._http.get<Credit[]>(this._base+ url_searchC)
@@ -69,7 +72,7 @@ export class CreditService {
 
      var url_searchC="credits/patient/"+credit.patientID+"?page="+page
      
-     if(credit.identifiantCredit.length != 0) 
+     if(credit.identifiantCredit != null && credit.identifiantCredit.length != 0) 
      {
        url_searchC=url_searchC+"&identifiant_credit="+credit.identifiantCredit
      }
@@ -81,6 +84,10 @@ export class CreditService {
      if(credit.dateOperation != 0)
      {
        url_searchC=url_searchC+"&date_operation="+credit.dateOperation
+     }
+     if(credit.dateOperationFin != 0)
+     {
+       url_searchC=url_searchC+"&date_operation_fin="+credit.dateOperationFin
      }
 
 
