@@ -54,7 +54,8 @@ searchText = '';
   searchForm: FormGroup =new FormGroup({
     identifiantCredit: new FormControl(),
     montant: new FormControl(),
-    dateOperation: new FormControl(),
+    dateOperationFin: new FormControl(0),
+    dateOperation: new FormControl(0),
     patientID: new FormControl(this.patientID)
   });
  
@@ -90,6 +91,7 @@ searchText = '';
      motif: '',
      montant: 0,
      dateOperation: 0,
+     dateOperationFin: 0,
      status: '',
      patientID: this.patientID
     })
@@ -106,7 +108,8 @@ searchText = '';
       this.searchForm.value.identifiantCredit != null &&
       this.searchForm.value.identifiantCredit.length==0 &&
       this.searchForm.value.montant==0 &&
-      this.searchForm.value.dateOperation ==null
+      this.searchForm.value.dateOperation ==0 &&
+      this.searchForm.value.dateOperationFin ==0
     ) {
      
      this.searchText="Veuillez saisir au moins un champs svp"
@@ -116,8 +119,7 @@ searchText = '';
     
       this.reachCredit=this.searchForm.value as Credit
       this.reachCredit.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
-
-
+      this.reachCredit.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
       this.reloadData(1,this.reachCredit);
 
     }
@@ -160,7 +162,9 @@ searchText = '';
      
       onTableDataChange(event: any) {
     
-        let searchUser=this.pSearch as Credit    
+        let searchUser=this.pSearch as Credit 
+        searchUser.dateOperation=new Date(this.pSearch.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.pSearch.dateOperationFin).getTime();   
         this.page =( event != 0)? event : 1;
         this.reloadData(this.page,searchUser);
     

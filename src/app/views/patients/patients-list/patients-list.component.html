@@ -76,7 +76,7 @@
                   <th scope="col" >Adresse</th>
                   <th scope="col" > Assurance</th>
                   <th scope="col">Solde  </th>
-                  <th scope="col" >Débiter</th>
+                  <th scope="col" hidden>Encaisser</th>
                   <th scope="col" >Détail</th>
                   <th scope="col" hidden>Mise à jour</th> 
                   <th scope="col" >Mot de passe</th> 
@@ -111,8 +111,8 @@
 
                         <td scope="row"> {{patient.solde}}</td>
                         
-                        <td>
-                          <a [routerLink]="['/patients/facturations-faire',patient.id]" color="primary" > Encaisser   </a>                         
+                        <td hidden>
+                          <a [routerLink]="['/patients/facturations-faire',patient.id]" color="primary"  > Encaisser   </a>                         
                        </td>
                         <td >
                           <a [routerLink]="['/patients/patients-details',patient.id]" color="primary"> Détail   </a>

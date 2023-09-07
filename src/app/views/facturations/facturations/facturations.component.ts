@@ -127,7 +127,6 @@ searchText = '';
       reloadData(page:number,debit:Debit)
       {
 
-
         this.debitService.allDebits(page,debit).subscribe(t=>
           {     
            
@@ -138,7 +137,6 @@ searchText = '';
               this.filteredDebits=t['data'].data
               this.totalFiltered= Math.ceil(t['data'].totalFiltered)
               this.totalGeneral=Math.ceil(t['data'].totalGeneral)
-    
             }
             else{
               this.filteredDebits=[]
@@ -150,11 +148,10 @@ searchText = '';
     
      
       onTableDataChange(event: any) {
-    
-        
-        let searchUser=this.pSearch as Debit    
-        searchUser.dateOperation=new Date(this.pSearch.dateOperation).getTime();
-        searchUser.dateOperationFin=new Date(this.pSearch.dateOperationFin).getTime();
+
+        let searchUser=this.searchForm.value as Debit    
+        searchUser.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
   
         this.page = event;
         this.reloadData(this.page,searchUser);

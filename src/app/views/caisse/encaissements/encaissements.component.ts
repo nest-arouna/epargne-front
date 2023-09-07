@@ -159,9 +159,9 @@ searchText = '';
       onTableDataChange(event: any) {
     
     
-        let searchUser=this.pSearch as Debit
-        searchUser.dateOperation=new Date(this.pSearch.dateOperation).getTime();
-        searchUser.dateOperationFin=new Date(this.pSearch.dateOperationFin).getTime();
+        let searchUser=this.searchForm.value as Debit
+        searchUser.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
         this.page = event;
         this.reloadData(this.page,searchUser);
     

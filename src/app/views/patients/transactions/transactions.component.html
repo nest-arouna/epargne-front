@@ -11,19 +11,23 @@
        <h5 class="text-center text-danger">{{searchText}}</h5>
         <app-docs-example href="forms/layout#gutters">
           <form cForm class="row g-3"  [formGroup]="searchForm" (ngSubmit)="onRechercheSubmit()">
-            <c-col md="4">
+            <c-col md="3">
               <label cLabel for="identifiantCredit">Réference</label>
               <input cFormControl id="identifiantCredit" [(ngModel)]="pSearch.identifiantCredit"  formControlName="identifiantCredit" type="text" />
             </c-col>
-            <c-col md="4">
+            <c-col md="3">
               <label cLabel for="montant">Montant</label>
               <input cFormControl id="montant"  formControlName="montant" [(ngModel)]="pSearch.montant" type="text"/>
             </c-col>
-            <c-col md="4">
-              <label cLabel for="dateOperation">Date d'opération</label>
-              <input cFormControl id="dateOperation"  formControlName="dateOperation" type="date" />
-            </c-col>
             
+            <c-col xs="3">
+              <label cLabel for="dateOperation">Date début recharge </label>
+              <input cFormControl id="dateOperation" type="date" [(ngModel)]="pSearch.dateOperation" formControlName="dateOperation" />
+            </c-col>
+            <c-col xs="3">
+              <label cLabel for="dateOperationFin">Date fin recharge</label>
+              <input cFormControl id="dateOperationFin" type="date" [(ngModel)]="pSearch.dateOperationFin" formControlName="dateOperationFin" />
+            </c-col>
             
             <c-col xs="6" >
               <button cButton type="submit" style="margin: 3%;">Rechercher</button>

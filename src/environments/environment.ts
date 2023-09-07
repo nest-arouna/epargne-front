@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //url: 'http://localhost:7070/',
-  url:'https://icare-nestlabs-test.net:7070/',
+  url: 'http://localhost:7070/',
+  //url:'https://icare-nestlabs-test.net:7070/',
   TYPE_PROFESSIONNAL:"PROFESSIONNAL",
   TYPE_ROLE:"USER",
   TYPE_PATIENT:"PATIENT",

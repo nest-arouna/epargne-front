@@ -107,15 +107,15 @@
 
                         <td scope="row"> {{patient.solde}}</td>
                         
-                        <td>
-                          <a [routerLink]="['/caisses/encaissements-faire',patient.id]" color="primary" hidden> Encaisser   </a>                         
+                        <td hidden>
+                          <a [routerLink]="['/caisses/encaissements-faire',patient.id]" color="primary" > Encaisser   </a>                         
                        </td>
                         <td >
                           <a [routerLink]="['/caisses/patients-details',patient.id]" color="primary" > Détail   </a>
 
                       </td>
                      
-                      <td>
+                      <td hiddens>
                         <a [routerLink]="['/caisses/patients-update',patient.id]" color="primary" hidden> Modifier </a>                          
                      </td>
                       </tr>

@@ -44,6 +44,7 @@ searchText = '';
     motif: new FormControl(''),
     montant: new FormControl(0),
     dateOperation: new FormControl(0),
+    dateOperationFin: new FormControl(0),
     status: new FormControl(''),
     patientID: new FormControl(localStorage.getItem("id"))
   });
@@ -81,6 +82,7 @@ searchText = '';
     motif: '',
     montant: 0,
     dateOperation: 0,
+    dateOperationFin: 0,
     status: '',
     patientID: localStorage.getItem("id")
    })
@@ -95,6 +97,7 @@ searchText = '';
       this.searchForm.value.motif.length == 0 &&
       this.searchForm.value.status.length == 0 &&
       this.searchForm.value.montant==0 &&
+      this.searchForm.value.dateOperationFin ==0 &&
       this.searchForm.value.dateOperation ==0
     ) {
 
@@ -104,6 +107,8 @@ searchText = '';
       this.searchText=''
       this.reachCredit=this.searchForm.value as Debit
       this.reachCredit.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
+      this.reachCredit.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
+
       this.reloadData(1,this.reachCredit);
 
     }
@@ -147,8 +152,9 @@ searchText = '';
       onTableDataChange(event: any) {
     
     
-        let searchUser=this.pSearch as Debit
-    
+        let searchUser=this.searchForm.value as Debit
+        searchUser.dateOperation=new Date(this.searchForm.value.dateOperation).getTime();
+        searchUser.dateOperationFin=new Date(this.searchForm.value.dateOperationFin).getTime();
         this.page = event;
         this.reloadData(this.page,searchUser);
     
